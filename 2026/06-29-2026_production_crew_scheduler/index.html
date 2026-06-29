@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Production Crew Scheduler</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>Production Crew Scheduler</h1>
+      <p>Generate a crewing CSV from an employee skills matrix and absent list.</p>
+    </section>
+
+    <section class="card">
+      <h2>Upload CSV Files</h2>
+      <div class="upload-grid">
+        <label class="upload-box"><span>Employee List CSV</span><input type="file" id="employeeFile" accept=".csv" /></label>
+        <label class="upload-box"><span>Absent List CSV</span><input type="file" id="absentFile" accept=".csv" /></label>
+      </div>
+
+      <h2>Schedule Settings</h2>
+      <div class="settings-grid">
+        <label>Line 1 Priority<input type="number" id="line1Priority" min="1" max="3" value="1" /></label>
+        <label>Line 2 Priority<input type="number" id="line2Priority" min="1" max="3" value="2" /></label>
+        <label>Line 3 Priority<input type="number" id="line3Priority" min="1" max="3" value="3" /></label>
+        <label>Rework Employees<input type="number" id="reworkCount" min="0" value="2" /></label>
+        <label>Cleaning Employees<input type="number" id="cleaningCount" min="0" value="2" /></label>
+      </div>
+
+      <h2>Optional Floaters</h2>
+      <div class="settings-grid">
+        <label>Line 1 Floater
+          <select id="line1Floater">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </label>
+
+        <label>Line 2 Floater
+          <select id="line2Floater">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </label>
+
+        <label>Line 3 Floater
+          <select id="line3Floater">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </label>
+      </div>
+
+      <button id="generateBtn">Generate Crewing Schedule</button>
+      <p id="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>Generated Crewing</h2>
+      <div class="table-wrap"><table id="scheduleTable"></table></div>
+      <button id="downloadBtn" disabled>Download crewing.csv</button>
+    </section>
+
+    <section class="card small">
+      <h2>CSV Format</h2>
+      <p><strong>Employee CSV columns:</strong></p>
+      <code>Seniority,Name,Is Line Lead?,Is Trainer?,Is Trainee,Line 1 Proficiency,Line 2 Proficiency,Line 3 Proficiency</code>
+      <p><strong>Absent CSV columns:</strong></p>
+      <code>Name</code>
+      <p>Accepted yes/no values: <strong>y/n</strong>, <strong>yes/no</strong>, or <strong>1/0</strong>.</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
